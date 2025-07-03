@@ -2095,7 +2095,7 @@ namespace carp_tm_2025.Controllers
                  .Add(new Tab()).Add("c) ").Add("să rezilieze unilateral contractul de împrumut după notificarea împrumutatului printr-o adresă scrisă, în situația în care ÎMPRUMUTATUL înregistrează debite restante, având scadența depășită cu o perioadă mai mare de 90 de zile calendaristice, diminuează ori anulează garanțiile acordate sau încalcă prevederile art. 5.2 din contract;\n")
                  .Add(new Tab()).Add("d) ").Add("rezilierea acționează de deplin drept fără a fi necesară punerea în întârziere a ÎMPRUMUTATULUI, fără intervenția instanței de judecată și fără orice altă formalitate prealabilă. La data rezilierii contractului, obligațiile de plată ale ÎMPRUMUTATULUI, incluzând, fără a se limita la întreaga valoare a împrumutului nerestituit, la care se adaugă dobânzile recalculate și dobânzile penalizatoare, devin exigibile. Asupra soldului împrumutului nerestituit se calculează dobânzi până la încasarea efectivă a acestuia de către C.A.R.P. Turnu Măgurele;\n")
                  .Add(new Tab()).Add("e) ").Add("să urmărească prin procedura executării silite pe ÎMPRUMUTAT și pe oricare dintre GIRANȚII săi, în vederea recuperării integrale a debitului, inclusiv cheltuielile de urmărire și executare silită."));
-
+            //
 
          document.Add(new Paragraph("6.3. C.A.R.P. Turnu Măgurele se obligă:\n").SetTextAlignment(TextAlignment.JUSTIFIED).SetFirstLineIndent(20)
                  .Add(new Tab()).Add("a) ").Add("să pună la dispoziția ÎMPRUMUTATULUI suma împrumutată în condițiile convenite, înconformitate cu prevederile art. 2 din prezentul Contract;\n")
