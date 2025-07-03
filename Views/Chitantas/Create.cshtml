@@ -1,0 +1,335 @@
+﻿@model carp_tm_2025.Models.Chitanta
+
+@{
+    ViewData["Title"] = "Creare CH sau NC";
+}
+
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+                      
+
+        $('#tip_document').val(0);
+
+
+        $('#tip_NC').click(function () {
+            var tip_D_P = parseInt($("#tip_NC").val());
+            $('#tip_document').val(tip_D_P);
+
+          
+        });
+
+
+
+
+        $('#ajdeces').change(function () {
+
+            var plataAjDecGet = parseFloat($("#ajdeces").val());
+            var partidAjDec = parseInt($("#nrcarnet").val());
+
+            $.ajax({
+                url: 'https://carp_tm_server/carp_tm_2025/Chitantas/calcul_luna_ajdeces',
+                type: 'post',
+                data: { nrcarnetGetLunaD: partidAjDec, plataAjDecGet: plataAjDecGet },
+                success: function (result) {
+                    $('#lunaajdeces').val(result);
+                }
+            })
+
+            
+
+        });
+
+
+        $('#total').on('focus', (function () {
+            var rata = $("#rata").val();
+            var dobanda = $("#dobanda").val();
+            var cotizatie = $("#cotizatie").val();
+            var cotizatie = $("#cotizatie").val();
+            var ajdeces = $("#ajdeces").val();
+            var taxainscr = $("#taxainscr").val();
+            var dobanda_penalizatoare = $("#dobanda_penalizatoare").val();
+            $('#total').val((Number(cotizatie) + Number(ajdeces) + Number(rata) + Number(dobanda) + Number(taxainscr) + Number(dobanda_penalizatoare)).toFixed(2));
+        }));
+
+
+        $('#rata').change(function () {
+
+            var dif_rata = -parseFloat($("#rata_de_plata").val()) + parseFloat($("#rata").val());
+            $('#diferenta_rata').val(Number(dif_rata).toFixed(2));
+
+            if (Number($('#diferenta_rata').val()) >= 0)
+                document.getElementById("diferenta_rata").setAttribute('style', 'color: #317eac ;');
+
+            if (Number($('#diferenta_rata').val()) < 0)
+                document.getElementById("diferenta_rata").setAttribute('style', 'color: #B22222 ;');
+        });
+
+
+        $('#cotizatie').change(function () {           
+
+            if (Number($('#cotizatie').val()) < 0) $("#dobanda").val("0");
+            if (Number($('#cotizatie').val()) < 0) $("#rata").val("0");
+            if (Number($('#cotizatie').val()) < 0) $("#rata_de_plata").val("0");
+            if (Number($('#cotizatie').val()) < 0) $("#dobanda_penalizatoare").val("0");
+            if (Number($('#cotizatie').val()) < 0) $("#diferenta_rata").val("0");
+
+        });
+
+
+
+
+
+
+
+
+    });
+
+</script>
+
+
+
+
+
+@if (Convert.ToString(ViewData["este_NC"]) == "CH")
+{
+    <h2 style="color: #317eac">Creare chitanta pentru partida @ViewData["partidach"]    </h2>
+
+}
+@if (Convert.ToString(ViewData["este_NC"]) == "NC")
+{
+    <h2 style="color: #317eac">Creare nota contabila pentru partida @ViewData["partidach"]      </h2>
+
+}
+
+<br />
+
+<form asp-action="Create">
+
+
+<div class="row">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+    <div class="col-md-6">
+            
+
+        <div class="row mb3">
+
+                @if (Convert.ToString(ViewData["este_NC"]) == "CH")
+                {
+                  <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">nr chitanta</label>                    
+                }
+                @if (Convert.ToString(ViewData["este_NC"]) == "NC")
+                {
+                    <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">nr nota contabila</label>
+                }
+            
+                <div class="col-md-10" style="width:65%; text-align:center">
+                     <input class="form-control" asp-for="nrch" value="@ViewData["nr_chitanta"]" />
+                     <span asp-validation-for="nrch" class="text-danger"></span>
+                </div>
+        </div>
+
+           
+        <br />
+
+        @if (Convert.ToString(ViewData["este_NC"]) == "NC")
+            {
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left;
+             color:#317eac; width:35%">selectati tip </label>
+
+                    <div class="col-md-10" style="width:65%; text-align:center" >
+                        <select id="tip_NC" class="form-control" name="tip_NC" >
+                            
+                            <option value="0">selectati tip NC</option>
+                            <option value="1">incasare prin banca</option>
+                            <option value="5">incasare prin cont creditori</option>
+                            <option value="2">introducere in debitori decedati</option>
+                            <option value="4">introducere in debitori popriri</option>
+                            <option value="51">introducere excluderi</option>
+                            <option value="6">stornare</option>
+
+
+                        </select>
+                </div>
+
+            </div>
+          }
+
+            <input asp-for="nrcarnet" id="nrcarnet" type="hidden" Value="@ViewData["partidach"]" />
+            <input asp-for="nume" id="nume" type="hidden" Value="@ViewData["nume"]" />
+            <input asp-for="id_utilizator" id="idutilizator" type="hidden" Value="@ViewData["id_utilizator"]" />
+            <input asp-for="tip_document" id="tip_document" type="hidden" Value="0" />
+            <input asp-for="tip_operatie" id="tipoperatie" type="hidden" Value="incasare" />
+
+            <input asp-for="serie" id="serie" type="hidden" Value="CAR" />
+
+
+
+        </div>
+
+    <br />
+
+    <div class="col-md-6">
+
+
+
+            <div class="row mb3">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">data chitanta</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                     @*<input type="text" id="datepicker" readonly="true" value="@ViewData["dataNow"]" asp-for="data" style="display:block; width: 100%; height: 34px; padding: 6px 12px; font-size: 14px; line-height: 1.428571429; color: #555555; vertical-align: middle;
+                                  background-color: #ffffff;  border: 1px solid #cccccc; border-radius:4px" />*@
+                    <input type="text" class="form-control" asp-for="data" value="@ViewData["data"]"  />
+                    <span asp-validation-for="data" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">cotizatie</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="cotizatie" id="cotizatie" />
+                    <span asp-validation-for="cotizatie" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">contributie</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="ajdeces" id="ajdeces"  />
+                    <span asp-validation-for="ajdeces" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <br />
+
+            <div class="row mb3">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">perioada</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" type="text" asp-for="lunaajdeces" id="lunaajdeces" readonly="true" />
+                    <span asp-validation-for="lunaajdeces" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">rata de plata</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="rata_de_plata" value="@ViewData["rata_de_plata"]" readonly="true" />
+                    <span asp-validation-for="rata_de_plata" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal;width:35%">rata</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="rata" id="rata" />
+                    <span asp-validation-for="rata" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal;width:35%">diferenta rata</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="diferenta_rata" id="diferenta_rata" readonly="true" />
+                    <span asp-validation-for="diferenta_rata" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal;width:35%">dobanda penalizatoare</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="dobanda_penalizatoare" id="dobanda_penalizatoare" readonly="true" value="@ViewData["dobanda_penalizatoare"]" />
+                    <span asp-validation-for="dobanda_penalizatoare" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal;width:35%">dobanda</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="dobanda" id="dobanda" value="@ViewData["dobanda"]" readonly="true"  />
+                    <span asp-validation-for="dobanda" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal;width:35%">taxa inscriere</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="taxainscr" id="taxainscr" />
+                    <span asp-validation-for="taxainscr" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal;width:35%">total</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="total" id="total" readonly="true" />
+                    <span asp-validation-for="total" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            @if ((decimal)(ViewData["sold_impr_ad"]) > 0)
+            {
+                <div class="row mb3">
+                    <label class="col-form-label col-md-2" style="text-align:left; color:white;font-weight:normal;width:35%">total</label>
+                    <div class="col-md-10" style="width:65%; text-align:center">
+                        <h5><a style="color:#317eac; text-decoration:none;" asp-controller="imprumuturis" asp-action="afisare_desfasurator_rate" asp-route-id_impr_ad="@ViewData["id_impr_desf_ch"]" asp-route-nr_carnet_ad="@ViewData["partidach"]"><i>desfasurator rate</i></a></h5>
+                    </div>
+                </div>
+            }
+
+</div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+           <div class="row mb3">
+               <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal;width:35%"></label>
+               <div class="col-md-10" style="width:65%; text-align:left">
+                   <input type="submit" class="btn btn-light" value="Creare" style="color:#317eac; font-weight:bold; background: none;border: 1px solid #dddddd" /> &nbsp;
+                    <a asp-action="Index" style="color:#317eac; text-decoration:none;" asp-route-nrcarnet="@ViewData["partidach"]">Inapoi la lista</a>
+                </div>
+           </div>
+
+    </div>
+
+</div>
+
+
+</form>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

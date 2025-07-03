@@ -1,0 +1,132 @@
+﻿@model carp_tm_2025.Models.registru_jurnal
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>registru_jurnal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id_registru_jurnal" />
+            <div class="form-group">
+                <label asp-for="data" class="control-label"></label>
+                <input asp-for="data" class="form-control" />
+                <span asp-validation-for="data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="id_document" class="control-label"></label>
+                <input asp-for="id_document" class="form-control" />
+                <span asp-validation-for="id_document" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nr_document" class="control-label"></label>
+                <input asp-for="nr_document" class="form-control" />
+                <span asp-validation-for="nr_document" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="id_CS_debitor" class="control-label"></label>
+                <select asp-for="id_CS_debitor" class="form-control" asp-items="ViewBag.id_CS_debitor"></select>
+                <span asp-validation-for="id_CS_debitor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="id_CA_debitor" class="control-label"></label>
+                <select asp-for="id_CA_debitor" class="form-control" asp-items="ViewBag.id_CA_debitor"></select>
+
+               
+
+                <span asp-validation-for="id_CA_debitor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="id_CS_creditor" class="control-label"></label>
+                <select asp-for="id_CS_creditor" class="form-control" asp-items="ViewBag.id_CS_creditor"></select>
+                <span asp-validation-for="id_CS_creditor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="id_CA_creditor" class="control-label"></label>
+                <select asp-for="id_CA_creditor" class="form-control" asp-items="ViewBag.id_CA_creditor"></select>
+                <span asp-validation-for="id_CA_creditor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="explicatie_nr_cont_analitic" class="control-label"></label>
+                <input asp-for="explicatie_nr_cont_analitic" class="form-control" />
+                <span asp-validation-for="explicatie_nr_cont_analitic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SI_CS_debit" class="control-label"></label>
+                <input asp-for="SI_CS_debit" class="form-control" />
+                <span asp-validation-for="SI_CS_debit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SI_CA_debit" class="control-label"></label>
+                <input asp-for="SI_CA_debit" class="form-control" />
+                <span asp-validation-for="SI_CA_debit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SI_CS_credit" class="control-label"></label>
+                <input asp-for="SI_CS_credit" class="form-control" />
+                <span asp-validation-for="SI_CS_credit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SI_CA_credit" class="control-label"></label>
+                <input asp-for="SI_CA_credit" class="form-control" />
+                <span asp-validation-for="SI_CA_credit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="debit" class="control-label"></label>
+                <input asp-for="debit" class="form-control" />
+                <span asp-validation-for="debit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="credit" class="control-label"></label>
+                <input asp-for="credit" class="form-control" />
+                <span asp-validation-for="credit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SF_CS_debit" class="control-label"></label>
+                <input asp-for="SF_CS_debit" class="form-control" />
+                <span asp-validation-for="SF_CS_debit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SF_CA_debit" class="control-label"></label>
+                <input asp-for="SF_CA_debit" class="form-control" />
+                <span asp-validation-for="SF_CA_debit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SF_CS_credit" class="control-label"></label>
+                <input asp-for="SF_CS_credit" class="form-control" />
+                <span asp-validation-for="SF_CS_credit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SF_CA_credit" class="control-label"></label>
+                <input asp-for="SF_CA_credit" class="form-control" />
+                <span asp-validation-for="SF_CA_credit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tip_document" class="control-label"></label>
+                <input asp-for="tip_document" class="form-control" />
+                <span asp-validation-for="tip_document" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="sortare" class="control-label"></label>
+                <input asp-for="sortare" class="form-control" />
+                <span asp-validation-for="sortare" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

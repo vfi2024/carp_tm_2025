@@ -1,0 +1,70 @@
+﻿@model IEnumerable<carp_tm_2025.Models.giranti>
+
+@{
+    ViewData["Title"] = "Afisare giranti";
+}
+
+<br />
+
+
+<h2 style="color:#317eac; font-family: sans-serif; font-size:30px">Giranti imprumut  pentru nr carnet @ViewData["nrcarnetg"], nr contract @ViewData["nrcontractg"] </h2>
+
+<br />
+
+
+
+
+<table class="table table-bordered" style="text-align:center">
+    <thead>
+        <tr style="font-weight:normal; color:#317eac; background-color: #f5f5f5 ">
+           
+            <th style="font-weight:normal; vertical-align:middle"> nume si prenume </th>
+
+            <th style="font-weight:normal; vertical-align:middle">  CNP </th>
+
+            <th style="font-weight:normal; vertical-align:middle">  nr contract </th>
+
+            <th style="font-weight:normal; vertical-align:middle">  data imprumut </th>
+
+            <th style="font-weight:normal; vertical-align:middle">  valoare imprumut </th>
+            
+                               
+            
+          
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+           <td>
+             @Html.DisplayFor(modelItem => item.nume_prenume)
+           </td>
+           <td>
+              @Html.DisplayFor(modelItem => item.CNP)
+           </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nr_contract)
+            </td>
+
+            <td>
+                  @Html.DisplayFor(modelItem => item.data_imprumut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valoare_imprumut)
+            </td>
+            
+                        
+           
+        </tr>
+}
+    </tbody>
+</table>
+
+
+
+<br />
+<p>
+    <a style="color:#317eac; text-decoration:none" asp-action="Index" asp-controller="imprumuturis" asp-route-searchterm="@ViewData["nrcarnetg"]">Revenire </a>
+</p>
+

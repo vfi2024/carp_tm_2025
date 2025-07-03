@@ -1,0 +1,194 @@
+﻿@*@using X.PagedList.Mvc.Core;*@
+@using X.PagedList;
+@using X.Web.PagedList;
+
+
+@model IEnumerable<carp_tm_2025.Models.D_4612>
+
+@{
+    ViewData["Title"] = "Debitori";
+}
+<br />
+<h2 style="color:#317eac "> @ViewData["titlud4612"] </h2>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+
+<link rel="stylesheet" href="~/css/PagedList.css">
+
+
+
+<form method="get" action="debitori_4612">
+
+    <br />
+
+    <table class="table" style=" border: solid 1px #ddd ;  text-align:center">
+
+        <tr style="text-align:center">
+
+            <td style="padding-top:15px">
+                <label style="color:#317eac">introduce-ti luna:</label>
+                <select id="luna_d4612_in" name="luna_d4612_in" style="width: 180px; border: 1px solid #cccccc; height: 25px;color: #333333 ">
+                    <option value="1">ianuarie</option>
+                    <option value="2">februarie</option>
+                    <option value="3">martie</option>
+                    <option value="4">aprilie</option>
+                    <option value="5">mai</option>
+                    <option value="6">iunie</option>
+                    <option value="7">iulie</option>
+                    <option value="8">august</option>
+                    <option value="9">septembrie</option>
+                    <option value="10">octombrie</option>
+                    <option value="11">noiembrie</option>
+                    <option value="12">decembrie</option>
+                </select>
+            </td>           
+
+            <td style="padding-top:15px">
+                <label style="color:#317eac"></label>
+                <input type="submit" style=" font-weight:bold; background:none; border:none; color:#317eac " value="Afisare" />
+            </td>
+
+        </tr>
+
+
+    </table>
+
+    <br />
+
+</form>
+
+<br />
+
+<h3 style="color:#317eac "> @ViewData["titlud4612T"] </h3>
+
+<div>
+
+    <table class="table" style="color:#317eac; border:1">
+        <tr class="active">          
+
+            <th>
+                total debit
+            </th>
+
+        </tr>
+
+        <tr class="table" style="color: #666666; background-color: #d9edf7">
+           
+            <td>
+                @ViewData["d4612T"]
+            </td>
+        </tr>
+
+    </table>
+
+    <br />
+
+</div>
+
+<br />
+
+<h3 style="color:#317eac "> @ViewData["titlud4612"] </h3>
+
+<div> 
+
+    <table class="table table-bordered" style="text-align:center">
+       <thead>
+        <tr style="font-weight:normal; color:#317eac; background-color: #f5f5f5 ">
+
+             <th style="font-weight:normal; vertical-align:middle"> nr carnet </th>
+
+             <th style="font-weight:normal; vertical-align:middle"> nume si prenume </th>
+
+             <th style="font-weight:normal; vertical-align:middle"> localitate </th>
+
+             <th style="font-weight:normal; vertical-align:middle"> data imprumut </th>
+
+             <th style="font-weight:normal; vertical-align:middle"> valoare imprumut </th>
+
+            
+
+             @if (Convert.ToString(ViewData["nrcol"]) == "8")
+             {
+               <th style="font-weight:normal; vertical-align:middle">  sold imprumut </th>
+
+                <th style="font-weight:normal; vertical-align:middle">  ultima plata </th>
+                
+             }
+
+                <th style="font-weight:normal; vertical-align:middle">  debit imprumut </th>
+        </tr>
+       </thead>
+     <tbody>
+      @foreach (var item in Model)
+      {      
+      
+
+       <tr style="text-align:center; color: #333333">
+
+         <td style="vertical-align:middle">  @Html.Raw(item.nrcarnet_d4612) </td>
+
+         <td style="vertical-align:middle"> @Html.DisplayFor(modelItem => item.nume_d4612) </td>
+
+         <td style="vertical-align:middle; text-align:center"> @Html.DisplayFor(modelItem => item.localitate_d4612) </td>
+
+         <td style="vertical-align:middle; text-align:center">  @Html.Raw(item.data_impr_d4612.ToString("dd.MM.yyyy")) </td>
+
+         <td style="vertical-align:middle; text-align:center"> @Html.DisplayFor(modelItem => item.val_impr_d4612) </td>
+
+
+         @if (Convert.ToString(ViewData["nrcol"]) == "8")
+                    {
+                        <td style="vertical-align:middle; text-align:right"> @Html.DisplayFor(modelItem => item.sold_impr_d4612) </td>
+
+                        <td style="vertical-align:middle; text-align:center">@Html.Raw(item.lunaimp_impr_d4612) </td>
+
+                       
+                    }
+
+         <td style="vertical-align:middle; text-align:right"> @Html.DisplayFor(modelItem => item.debit_impr_d4612) </td>               
+                                                         
+
+       </tr>
+
+   
+
+      }
+      </tbody>
+        
+    </table>     
+
+    @Html.PagedListPager((IPagedList)ViewData["d4612"], page => Url.Action("debitori_4612", "Pensionars", new { luna_d4612_in = @ViewData["luna"], page = page }))
+
+</div>
+
+  
+
+
+<p>
+    <br /> 
+    <h2>            
+     <a style="color:#317eac; text-decoration:none" href='@Url.Content("~/PDF/debitori_4612.pdf")'>Listare</a>
+    <br />
+     <a style="color:#317eac; text-decoration:none" asp-action="listare_notificari_debitori_4612" asp-route-luna_d4612_inl="@ViewData["lunal"]">Listare notificari</a>
+    </h2>
+
+    <br />
+    <br />
+    <h2>
+     <a style="color:#317eac; text-decoration:none" asp-action="restantieri_contributii">Restantieri contributii </a>       
+    </h2>
+    <h2>
+        <a style="color:#317eac; text-decoration:none" asp-action="CD" asp-route-ID_CD_in=18 asp-route-luna_in=0 asp-route-page=1>Creditori</a>
+    </h2>
+
+    <h2>       
+        <a style="color:#317eac; text-decoration:none" asp-action="CD" asp-route-ID_CD_in=26 asp-route-luna_in=0 asp-route-page=1  >Debitori decedati</a>
+    </h2>
+    <h2>
+        <a style="color:#317eac; text-decoration:none" asp-action="CD" asp-route-ID_CD_in=27 asp-route-luna_in=0 asp-route-page=1>Debitori popriri</a>
+    </h2>
+
+</p>
+
+<br />
+

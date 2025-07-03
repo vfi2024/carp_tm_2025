@@ -1,0 +1,134 @@
+﻿@model IEnumerable<carp_tm_2025.Models.registru_casa_centralizator>
+
+@{
+    ViewData["Title"] = "Registru de casa centralizator ";
+}
+<br />
+<h2 style="color:#317eac "> Registru de casa centralizator  </h2>
+
+
+<br />
+<br />
+<h3 style="color:#317eac;  "> @ViewData["TitlutRCCD"] </h3>
+
+<div>
+
+    <table class="table" style="color:#317eac; border:1">
+        <tr class="active">
+            <th>
+                sold initial
+            </th>
+
+            <th>
+                total incasari
+            </th>
+
+            <th>
+               total plati
+            </th>
+
+            <th>
+                sold final
+            </th>
+           
+        </tr>
+
+        <tr class="table" style="color: #666666; background-color: #d9edf7">
+            <td>
+                @ViewData["SI_RCC_deleg"]
+            </td>
+            <td>
+                @ViewData["Total_Credit_RCC_deleg"]
+            </td>
+            <td>
+                @ViewData["Total_Debit_RCC_deleg"]
+            </td>
+            <td>
+                @ViewData["SF_RCC_deleg"]
+            </td>         
+        </tr>
+
+    </table>
+
+    <br />
+
+</div>
+
+
+
+<br />
+
+<h3 style="color:#317eac ">  @ViewData["TitluRCCD"] </h3>
+
+<div>
+
+  
+
+
+    <table class="table table-bordered" style="text-align:center">
+       <thead>
+        <tr style="font-weight:normal; color:#317eac; background-color: #f5f5f5 ">
+
+                <th style="font-weight:normal; vertical-align:middle"> cont sintetic </th>
+
+                <th style="font-weight:normal; vertical-align:middle"> explicatie cont sintetic </th>
+             
+
+                <th style="font-weight:normal; vertical-align:middle"> incasare </th>
+
+                <th style="font-weight:normal; vertical-align:middle">  plata </th>
+          
+        </tr>
+       </thead>
+     <tbody>
+      @foreach (var item in Model)
+      {
+       <tr style="text-align:center; color: #333333">
+              <td style="vertical-align:middle "> @Html.DisplayFor(modelItem => item.nrcont_CS) </td>
+              <td style="vertical-align:middle "> @Html.DisplayFor(modelItem => item.explicatie_cont_CS) </td>
+            
+
+             <td style="vertical-align:middle; text-align:right"> @Html.DisplayFor(modelItem => item.incasare) </td>
+             <td style="vertical-align:middle; text-align:right"> @Html.DisplayFor(modelItem => item.plata) </td>
+         
+
+        </tr>
+      }
+
+      </tbody>
+
+    </table>
+     
+
+</div>
+
+
+
+<br />
+
+<h2 style="color:#317eac; text-decoration:none ">
+    @Html.ActionLink("Listare", "RCC_listare", new
+        {
+            ziua_rccd = @ViewData["ziua_RCCD"],
+            ziua2_rccd = @ViewData["ziua2_RCCD"],
+            delegat = @ViewData["delegat_RCCD"],
+            SI_RCC = @ViewData["SI_RCC_deleg"],
+           
+        }, new { style = "text-decoration:none; color:#317eac" })
+</h2>
+
+<br />
+
+
+<p style="font-style:italic ">
+    <a style="color:#317eac; text-decoration:none" asp-controller="registru_jurnal" asp-action="RC_delegati_afisare" asp-route-ziua_rcd="@ViewData["ziua_rccd"]" asp-route-ziua_rcd2="@ViewData["ziua2_rccd"]" asp-route-delegat="@ViewData["delegat_RCCD"]"  asp-route-asp-page=1  ><b>Revenire la registru de casa </b></a>
+</p>
+
+
+
+<br />
+
+
+
+
+

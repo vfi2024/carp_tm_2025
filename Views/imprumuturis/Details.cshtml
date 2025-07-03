@@ -1,0 +1,54 @@
+﻿@model carp_tm_2025.Models.imprumuturi
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>imprumuturi</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nrcarnet)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nrcarnet)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.valoare_imprumut)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.valoare_imprumut)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.data_imprumut)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.data_imprumut)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nume)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nume)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nr_contract)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nr_contract)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.mod_acordare)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.mod_acordare)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.idimprum">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

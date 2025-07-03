@@ -1,0 +1,194 @@
+﻿@*@using X.PagedList.Mvc.Core;*@
+@using X.PagedList;
+@using X.Web.PagedList;
+
+
+@model IEnumerable<carp_tm_2025.Models.CD>
+
+
+
+
+
+@{
+    ViewData["Title"] = "Creditori, Debitori";
+}
+<br />
+<h2 style="color:#317eac "> @ViewData["titluCD0"] </h2>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+
+<link rel="stylesheet" href="~/css/PagedList.css">
+
+
+
+
+<form method="get" action="CD">
+
+    <br />
+
+    <table class="table" style=" border: solid 1px #ddd ;  text-align:center">
+
+        <tr style="text-align:center">
+
+            <td style="padding-top:15px">
+                <label style="color:#317eac">introduce-ti luna:</label>
+                <select id="luna_in" name="luna_in" style="width: 180px; border: 1px solid #cccccc; height: 25px; color: #333333">
+                    <option value="1">ianuarie</option>
+                    <option value="2">februarie</option>
+                    <option value="3">martie</option>
+                    <option value="4">aprilie</option>
+                    <option value="5">mai</option>
+                    <option value="6">iunie</option>
+                    <option value="7">iulie</option>
+                    <option value="8">august</option>
+                    <option value="9">septembrie</option>
+                    <option value="10">octombrie</option>
+                    <option value="11">noiembrie</option>
+                    <option value="12">decembrie</option>
+                </select>
+            </td>
+
+            <input type="hidden" name="ID_CD_in" id="ID_CD_in" value="@ViewData["ID_CD"]" />
+
+            <td style="padding-top:15px">
+                <label style="color:#317eac"></label>
+                <input type="submit" style=" font-weight:bold; background:none; border:none; color:#317eac " value="Afisare" />
+            </td>
+
+        </tr>
+
+
+    </table>
+
+    <br />
+
+</form>
+
+
+<h3 style="color:#317eac ">  @ViewData["titlutCD"] </h3>
+
+<div>
+
+    <table class="table" style="color:#317eac; border:1">
+        <tr class="active">
+            <th>
+                sold initial
+            </th>
+
+            <th>
+                total debit
+            </th>
+
+            <th>
+                total credit
+            </th>
+
+            <th>
+                sold final
+            </th>
+           
+        </tr>
+
+        <tr class="table" style="color: #666666; background-color: #d9edf7">
+            <td>
+                @ViewData["total_SI_CD"]
+            </td>
+            <td>
+                @ViewData["total_debit_CD"]
+            </td>
+            <td>
+                @ViewData["total_credit_CD"]
+            </td>
+            <td>
+                @ViewData["total_SF_CD"]
+            </td>         
+        </tr>
+
+    </table>
+
+    <br />
+
+</div>
+
+
+
+<br />
+
+<h3 style="color:#317eac "> @ViewData["titluCD"] </h3>
+
+<div> 
+
+
+    <table class="table table-bordered" style="text-align:center">
+       <thead>
+        <tr style="font-weight:normal; color:#317eac; background-color: #f5f5f5 ">
+
+                <th style="font-weight:normal; vertical-align:middle"> nr cont </th>
+
+                <th style="font-weight:normal; vertical-align:middle"> explicatie nr cont </th>
+
+                <th style="font-weight:normal; vertical-align:middle">sold initial </th>
+
+                <th style="font-weight:normal; vertical-align:middle"> debit </th>
+
+                <th style="font-weight:normal; vertical-align:middle"> credit </th>
+
+                <th style="font-weight:normal; vertical-align:middle">  sold final </th>
+           
+        </tr>
+       </thead>
+     <tbody>
+      @foreach (var item in Model)
+      {
+       
+       if ((item.SI_CD != 0) || ((item.SI_CD == 0) && (item.debit_CD != 0)))
+       {
+
+       <tr style="text-align:center; color: #333333">
+
+         <td style="vertical-align:middle">  @Html.Raw(item.nr_cont_CD) </td>
+
+         <td style="vertical-align:middle"> @Html.DisplayFor(modelItem => item.explicatie_nr_cont_CD) </td>
+
+         <td style="vertical-align:middle; text-align:right"> @Html.DisplayFor(modelItem => item.SI_CD) </td>
+
+         <td style="vertical-align:middle; text-align:right"> @Html.DisplayFor(modelItem => item.debit_CD) </td>             
+
+         <td style="vertical-align:middle; text-align:right"> @Html.DisplayFor(modelItem => item.credit_CD) </td>
+
+         <td style="vertical-align:middle; text-align:right"> @Html.DisplayFor(modelItem => item.SF_CD) </td>               
+                                                         
+
+       </tr>
+
+      }
+
+      }
+      </tbody>
+        
+    </table>     
+
+    @Html.PagedListPager((IPagedList)ViewData["CD"], page => Url.Action("CD", "Pensionars", new { ID_CD_in = @ViewData["ID_CD"], luna_in = @ViewData["luna"], page = page }))
+
+</div>
+
+  
+
+
+<p>
+    <br /> 
+    <h2>       
+     <a style="color:#317eac; text-decoration:none" href='@Url.Content("~/PDF/CD.pdf")'>Listare</a>
+    </h2>
+    <br />
+    <br />
+    <h2>
+        <a style="color:#317eac; text-decoration:none" asp-action="restantieri_contributii">Restantieri contributii </a>        
+    </h2>
+    <h2>        
+        <a style="color:#317eac; text-decoration:none" asp-action="debitori_4612">Debitori </a>
+    </h2>
+</p>
+
+<br />
+

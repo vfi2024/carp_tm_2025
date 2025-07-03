@@ -1,0 +1,93 @@
+﻿@model IEnumerable<carp_tm_2025.Models.giranti>
+
+@{
+    ViewData["Title"] = "Afisare giranti";
+}
+
+<br />
+
+
+<h2 style="color:#317eac; font-family: sans-serif; font-size:30px">Giranti</h2>
+
+<br />
+
+
+
+
+<form method="get">
+    <table class="table" style=" border: solid 1px #ddd ;  text-align:center">
+       
+        <tr>
+
+            <td style="padding-top:25px; padding-bottom:25px">
+                <input type="submit" style="font-weight:bold; background:none; border:none; color:#317eac; " value="cautare girant al carui CNP contine" />
+
+                <input type="search" name="cnp" style="border: solid 1px #ddd; text-align:center" /> 
+                <input type="hidden" name="nrcarnetg" value="@ViewData["nrcarnetg"]" />
+            </td>
+
+        </tr>
+
+    </table>
+</form>
+
+<table class="table table-bordered" style="text-align:center">
+    <thead>
+        <tr style="font-weight:normal; color:#317eac; background-color: #f5f5f5 ">
+
+            <th style="font-weight:normal; vertical-align:middle"> nr carnet</th>
+
+           
+            <th style="font-weight:normal; vertical-align:middle"> nume si prenume</th>
+
+            <th style="font-weight:normal; vertical-align:middle">  CNP </th>
+
+            <th style="font-weight:normal; vertical-align:middle">  nr contract </th>
+
+            <th style="font-weight:normal; vertical-align:middle">  data imprumut </th>
+
+            <th style="font-weight:normal; vertical-align:middle">  valoare imprumut </th>
+            
+                               
+            
+          
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+             @Html.DisplayFor(modelItem => item.nrcarnet)
+           </td>
+
+           <td>
+             @Html.DisplayFor(modelItem => item.nume_prenume)
+           </td>
+           <td>
+              @Html.DisplayFor(modelItem => item.CNP)
+           </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nr_contract)
+            </td>
+                
+            <td>
+                @Html.Raw(item.data_imprumut.ToString("dd.MM.yyyy"))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valoare_imprumut)
+            </td>
+            
+                        
+           
+        </tr>
+}
+    </tbody>
+</table>
+
+
+
+<br />
+<p>
+    <a style="color:#317eac; text-decoration:none" asp-action="Index" asp-controller="imprumuturis" asp-route-searchterm="@ViewData["nrcarnetg"]">Revenire </a>
+</p>
+

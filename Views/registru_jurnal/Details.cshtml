@@ -1,0 +1,138 @@
+﻿@model carp_tm_2025.Models.registru_jurnal
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>registru_jurnal</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.data)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.data)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.id_document)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.id_document)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nr_document)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nr_document)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.explicatie_nr_cont_analitic)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.explicatie_nr_cont_analitic)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SI_CS_debit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SI_CS_debit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SI_CA_debit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SI_CA_debit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SI_CS_credit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SI_CS_credit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SI_CA_credit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SI_CA_credit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.debit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.debit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.credit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.credit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SF_CS_debit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SF_CS_debit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SF_CA_debit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SF_CA_debit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SF_CS_credit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SF_CS_credit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SF_CA_credit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SF_CA_credit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.tip_document)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.tip_document)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.sortare)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.sortare)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.conturi_sintetice_D)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.conturi_sintetice_D.id_cont_sintetic)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.conturi_sintetice_C)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.conturi_sintetice_C.id_cont_sintetic)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.conturi_analitice_C)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.conturi_analitice_C.explicatie_nr_cont_analitic)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.conturi_analitice_D)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.conturi_analitice_D.explicatie_nr_cont_analitic)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.id_registru_jurnal">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

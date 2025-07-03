@@ -1,0 +1,285 @@
+﻿@model carp_tm_2025.Models.Pensionar
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Pensionar</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nume)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nume)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.prenume)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.prenume)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cnp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cnp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.judet)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.judet)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.localitate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.localitate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.strada)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.strada)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nr)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nr)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.bloc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.bloc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ap)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ap)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.telefon)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.telefon)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nrcupon)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nrcupon)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.pensie)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.pensie)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.taxainscriere)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.taxainscriere)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.datainscriere)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.datainscriere)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.lunaimp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.lunaimp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.soldimp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.soldimp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.credit_imprumut)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.credit_imprumut)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.debit_imprumut)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.debit_imprumut)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.restimp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.restimp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.acimp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.acimp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.dataimp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.dataimp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LLL)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LLL)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.desfasurator)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.desfasurator)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.sold_461)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.sold_461)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.soldcotiz)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.soldcotiz)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.incascotiz)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.incascotiz)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.lunaajdeces)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.lunaajdeces)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EXCL)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EXCL)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.soldimp2016)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.soldimp2016)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.soldcotiz2016)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.soldcotiz2016)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.soldajdeces2016)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.soldajdeces2016)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.lunaajdeces2016)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.lunaajdeces2016)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.sold_DP2016)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.sold_DP2016)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.credit_imprumut2016)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.credit_imprumut2016)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.debit_imprumut2016)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.debit_imprumut2016)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.sold_dobanda2016)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.sold_dobanda2016)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.soldajdeces)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.soldajdeces)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.solddobanda)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.solddobanda)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.sold_DP)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.sold_DP)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.luna_DP)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.luna_DP)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.soldtaxainscr)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.soldtaxainscr)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.id_delegat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.id_delegat)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.id_stare)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.id_stare)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="nrcarnet" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

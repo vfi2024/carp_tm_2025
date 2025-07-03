@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using carp_tm_delegati.Areas.Identity.Data
+
+@inject SignInManager<carp_tm_delegatiUser> SignInManager
+@inject UserManager<carp_tm_delegatiUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item">
+        <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" style="color:white">Utilizator @UserManager.GetUserName(User)!</a>
+    </li>
+    <li class="nav-item">
+        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button id="logout" type="submit" class="nav-link btn btn-link border-0" style="color:white">Iesire</button>
+        </form>
+    </li>
+}
+
+</ul>

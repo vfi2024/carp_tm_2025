@@ -1,0 +1,214 @@
+﻿@model carp_tm_2025.Models.giranti
+
+@{
+    ViewData["Title"] = "Introducere girant";
+}
+
+<h2 style="color:#317eac">Introducere girant </h2>
+
+<br />
+
+
+<form asp-action="Create">  
+      
+
+ <div class="row">
+
+        <input asp-for="data_imprumut" type="hidden"  />
+        <input asp-for="valoare_imprumut" type="hidden"  />      
+       
+         <div class="col-md-6">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">nr carnet</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="nrcarnet" value="@ViewData["nrcarnetgc"]" readonly="true" />
+                    <span asp-validation-for="nrcarnet" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">nume si prenume</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="nume_prenume" />
+                    <span asp-validation-for="nume_prenume" class="text-danger"></span>
+                </div>
+
+            </div>          
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">CNP</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="CNP" />
+                    <span asp-validation-for="CNP" class="text-danger"></span>
+                </div>
+
+            </div>
+
+
+             <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">venit lunar</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="venit" />
+                    <span asp-validation-for="venit" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <br />           
+
+
+            <br />        
+                    
+
+         </div>
+
+
+         <div class="col-md-6">
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">judet</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="judet" />
+                    <span asp-validation-for="judet" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <br />
+
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">localitate</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="localitate" />
+                    <span asp-validation-for="localitate" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">strada</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="strada" />
+                    <span asp-validation-for="strada" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">nr</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="nr" />
+                    <span asp-validation-for="nr" class="text-danger"></span>
+                </div>
+
+            </div>
+
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">bloc</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="bloc" />
+                    <span asp-validation-for="bloc" class="text-danger"></span>
+                </div>
+
+            </div>
+
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">ap</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="ap" />
+                    <span asp-validation-for="ap" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">telefon</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="telefon" />
+                    <span asp-validation-for="telefon" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <br />
+            
+
+        </div>
+
+ </div>
+              
+
+
+  
+
+ <div class="row">
+
+    <div class="col-md-6">
+
+        <div class="row mb3">
+            <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal;width:35%"></label>
+            <div class="col-md-10" style="width:65%; text-align:left">
+                    <input type="submit" class="btn btn-light" value="Creare" style="color:#317eac; font-weight:bold; background: none;border: 1px solid #dddddd" />&nbsp;
+                 <a style="color:#317eac; text-decoration:none" asp-action="Index" asp-controller="imprumuturis" asp-route-searchterm="@ViewData["nrcarnetgc"]"><i>Revenire la imprumuturi acordate</i></a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+ </form>
+
+
+<br />
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

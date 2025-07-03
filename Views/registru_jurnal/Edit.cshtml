@@ -1,0 +1,278 @@
+﻿,
+@model carp_tm_2025.Models.registru_jurnal
+
+@{
+    ViewData["Title"] = "Introducere articol contabil";
+}
+
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+
+        $('#ID_CS_debitor').val(@ViewData["ID_CS_debitor_S"])  ;
+        $('#ID_CS_creditor').val(@ViewData["ID_CS_creditor_S"])  ;       
+        
+
+
+        //la open form incarca id ca debitor
+        var urlx = 'https://carp_tm_server/carp_tm_2025/registru_jurnal/GetNrContAnalitic_rj/?id_cont_sinteticSel_rj=';
+        var ddlsource = $('#ID_CS_debitor');
+        urlx = urlx + $(ddlsource).val();
+        $.getJSON(urlx, function (data) {
+            $('#ID_CA_debitor').empty();
+            var items = "";
+            $.each(data, function (index) {
+                $('#ID_CA_debitor').append('<option value=' + data[index].Value + '>' + data[index].Text + '</option>');
+                items += '<option id=' + data[index].Value + '>' + data[index].Text + '></option>';
+            });           
+            $('#ID_CA_debitor').val(@ViewData["ID_CA_debitor_S"]);
+        });     
+
+
+        //load ID CA CREDITOR
+        var urlx = 'https://carp_tm_server/carp_tm_2025/registru_jurnal/GetNrContAnalitic_rj/?id_cont_sinteticSel_rj=';
+        var ddlsource = $('#ID_CS_creditor');
+        urlx = urlx + $(ddlsource).val();
+        $.getJSON(urlx, function (data) {
+            $('#ID_CA_creditor').empty();
+            var items = "";
+            $.each(data, function (index) {
+                $('#ID_CA_creditor').append('<option value=' + data[index].Value + '>' + data[index].Text + '</option>');
+                items += '<option id=' + data[index].Value + '>' + data[index].Text + '></option>';
+            });
+         $('#ID_CA_creditor').val(@ViewData["ID_CA_creditor_S"]);
+        });
+
+       
+
+
+
+        $('#ID_CS_debitor').change(function () {
+
+            var urlx = 'https://carp_tm_server/carp_tm_2025/registru_jurnal/GetNrContAnalitic_rj/?id_cont_sinteticSel_rj=';
+            var ddlsource = "#ID_CS_debitor";
+
+            urlx = urlx + $(ddlsource).val();
+
+            $.getJSON(urlx, function (data) {
+                $('#ID_CA_debitor').empty();
+                var items = "";
+                $.each(data, function (index) {
+                    $('#ID_CA_debitor').append('<option value=' + data[index].Value + '>' + data[index].Text + '</option>');
+                    items += '<option id=' + data[index].Value + '>' + data[index].Text + '></option>';
+                });
+
+                
+
+                
+            });
+
+        });
+
+
+        $('#ID_CS_creditor').change(function () {
+
+            var urlx = 'https://carp_tm_server/carp_tm_2025/registru_jurnal/GetNrContAnalitic_rj/?id_cont_sinteticSel_rj=';
+            var ddlsource = "#ID_CS_creditor";
+
+            urlx = urlx + $(ddlsource).val();
+
+            $.getJSON(urlx, function (data) {
+                $('#ID_CA_creditor').empty();
+                var items = "";
+                $.each(data, function (index) {
+                    $('#ID_CA_creditor').append('<option value=' + data[index].Value + '>' + data[index].Text + '</option>');
+                    items += '<option id=' + data[index].Value + '>' + data[index].Text + '></option>';
+                });
+            });
+
+        });
+
+
+
+    });
+
+</script>
+
+
+
+
+<br />
+
+
+<h2 style="color: #317eac">Editare articol contabil</h2>
+
+<br />
+<form asp-action="Edit" >
+ 
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<input type="hidden" asp-for="id_registru_jurnal" />
+
+<div class="row">      
+
+
+    <div class="col-md-6">
+        
+        <div class="row mb3">
+
+                <label class="control-label col-md-2" style="text-align:left; color:#317eac; font-weight:normal; width:35%">cont sintetic debitor</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                        @Html.DropDownList("ID_CS_debitor", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+               
+          </div>
+
+          <br />
+
+          <div class="row mb3">
+
+                <label class="control-label col-md-2" style="text-align:left; color:#317eac; font-weight:normal; width:35%" >cont analitic debitor</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    @Html.DropDownList("ID_CA_debitor", new SelectList(new[] { "0" }), htmlAttributes: new { @class = "form-control" })
+                    </div>
+
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="control-label col-md-2" style="text-align:left; color:#317eac; font-weight:normal; width:35%" >cont sintetic creditor</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    @Html.DropDownList("ID_CS_creditor", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="control-label col-md-2" style="text-align:left; color:#317eac; font-weight:normal; width:35%" >cont analitic creditor</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    @Html.DropDownList("ID_CA_creditor", new SelectList(new[] { "0" }), htmlAttributes: new { @class = "form-control" })
+                </div>
+
+            </div>
+
+            <br />
+
+      </div>
+           
+    <div class="col-md-6">
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">data</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="data"  readonly="true" />
+                    <span asp-validation-for="data" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">nr. document</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="nr_document"  />
+                    <span asp-validation-for="nr_document" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">explicatie cont analitic</label>
+                <div class="col-md-10" style="width:65%; text-align:center;width:65%">
+                    <input class="form-control" asp-for="explicatie_nr_cont_analitic" />
+                    <span asp-validation-for="explicatie_nr_cont_analitic" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">suma</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="credit" />
+                    <span asp-validation-for="credit" class="text-danger"></span>
+                </div>
+
+            </div>                  
+                            
+
+          
+
+            <br />          
+
+            <input asp-for="SI_CS_debit" type="hidden" />
+            <input asp-for="SI_CA_debit" type="hidden" />
+            <input asp-for="SI_CS_credit" type="hidden" />
+            <input asp-for="SI_CA_credit" type="hidden" />
+
+            
+            <input asp-for="SF_CA_debit" type="hidden" />            
+            <input asp-for="SF_CA_credit" type="hidden" />
+
+          
+            <input asp-for="id_document" type="hidden" />
+            <input asp-for="tip_document" type="hidden" />
+
+            <input asp-for="sortare" type="hidden"  />
+            <input asp-for="debit" type="hidden" />
+
+
+
+
+      
+      </div>
+
+</div>
+
+ <br />
+
+
+<div class="row">          
+
+        <div class="col-md-6">
+
+          <div class="row mb3">
+
+          <label class="control-label col-md-2" style="text-align:left; color:#317eac; font-weight:normal;width:35%"></label>
+          <div class="col-md-10"style="width:65%; text-align:left">                                  
+          <input type="submit" class="btn btn-light" value="Editare" style="color:#317eac; font-weight:bold; background: none;border: 1px solid #dddddd;text-align:left" />
+          </div>
+               
+         </div>
+
+        </div>      
+
+ </div>
+
+
+
+
+</form>
+
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

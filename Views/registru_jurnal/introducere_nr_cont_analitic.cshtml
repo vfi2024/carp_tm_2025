@@ -1,0 +1,102 @@
+﻿@model carp_tm_2025.Models.conturi_analitice
+
+@{
+    ViewData["Title"] = "Introducere cont analitic ";
+}
+
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+
+
+<br />
+
+
+<h2 style="color: #317eac">Introducere cont analitic</h2>
+
+<br />
+<form asp-action="introducere_nr_cont_analitic"  >
+ 
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="row">    
+
+
+    <div class="col-md-6">
+        
+        <div class="row mb3">
+
+                <label class="control-label col-md-2" style="text-align:left; color:#317eac; font-weight:normal; width:35%">cont sintetic debitor</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    @Html.ListBox("id_cont_sintetic", null, htmlAttributes: new { @class = "form-control", @syle = "outline:0" })
+                   
+                </div>
+               
+          </div>
+
+          <br />        
+           
+      </div>
+           
+    <div class="col-md-6">
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">nr cont analitic</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="nr_cont_analitic" syle="outline:0" />
+                    <span asp-validation-for="nr_cont_analitic" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">explicatie nr. cont analitic</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="explicatie_nr_cont_analitic" syle="outline:0" />
+                    <span asp-validation-for="explicatie_nr_cont_analitic" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <br />
+
+     </div>            
+      
+ </div>
+
+ <br />
+
+
+
+<div class="row">          
+
+     <div class="col-md-6">
+
+          <div class="row mb3">
+
+            <label class="control-label col-md-2" style="text-align:left; color:#317eac; font-weight:normal;width:35%"></label>
+            <div class="col-md-10"style="width:65%; text-align:left">                                  
+            <input type="submit" class="btn btn-light" value="Creare" style="color:#317eac; font-weight:bold; background: none;border: 1px solid #dddddd;text-align:left" />
+            </div>
+               
+         </div>
+
+     </div>      
+
+ </div>
+
+
+
+
+</form>
+
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

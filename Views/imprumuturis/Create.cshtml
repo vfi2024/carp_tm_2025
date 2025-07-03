@@ -1,0 +1,194 @@
+﻿@model carp_tm_2025.Models.imprumuturi
+
+@{
+    ViewData["Title"] = "Creare imprumut";
+}
+
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+
+<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.min.css">
+
+<link rel="stylesheet" href="~/css/PagedList.css">
+
+
+<h2 style="color:#317eac">Creare imprumut</h2>
+<div id="datepicker"></div>
+
+<script type="text/javascript">
+    $(function () {
+        $(".datepicker").datepicker();
+
+    });
+</script>
+
+
+<style>
+    .ui-datepicker {
+        background: #337ab7;
+        color: white;
+    }
+
+    .ui-datepicker-calendar a.ui-state-default {
+        background: white;
+    }
+
+    .ui-datepicker-header {
+        background: white;
+        color: #337ab7;
+    }
+</style>
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#mod_acordare').val(0);
+
+
+        $('#mod_acordare').click(function () {
+            var mod_acordare_val = parseInt($("#mod_acordare").val());
+            $('#mod_acordare').val(mod_acordare_val);
+
+        });
+
+
+    });
+
+
+</script>
+
+
+<br />
+
+
+<form asp-action="Create">  
+      
+
+ <div class="row">
+
+
+         <div class="col-md-6">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">nr carnet</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="nrcarnet" value="@ViewData["partidac"]" readonly="true" />
+                    <span asp-validation-for="nrcarnet" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <br />
+
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">mod acordare</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <select class="form-control" id="mod_acordare" name="mod_acordare" style="display: block; width: 100%; height: 34px; padding: 6px 12px; font-size: 14px; line-height: 1.428571429; color: #555555; vertical-align: middle; background-color: #ffffff; border: 1px solid #cccccc; border-radius: 4px;">
+                        <option value="0">prin casa</option>
+                        <option value="1">prin banca</option>
+                    </select>
+                </div>
+
+            </div>
+       
+            <br />
+            <input asp-for="nume" type="hidden" Value="@ViewData["nume"]" />
+         
+
+        </div>
+
+        <br />
+
+        <div class="col-md-6">
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">nr contract</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="nr_contract"  />
+                    <span asp-validation-for="nr_contract" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">valoare imprumut</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" asp-for="valoare_imprumut" />
+                    <span asp-validation-for="valoare_imprumut" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">data imprumut</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">                    
+                    <input type="text" class="form-control" asp-for="data_imprumut" value="@ViewData["datanew"]" readonly="readonly" />
+                    <span asp-validation-for="data_imprumut" class="text-danger"></span>
+                  
+                </div>
+
+            </div>
+
+        </div>
+
+
+  </div>
+
+ <br />
+  
+<div class="row">
+
+<div class="col-md-6">
+
+
+            <div class="row mb3">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal;width:35%"></label>
+                <div class="col-md-10" style="width:65%; text-align:left">                    
+                    
+
+                </div>
+            </div>
+
+            <div class="row mb3">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal;width:35%"></label>
+                <div class="col-md-10" style="width:65%; text-align:left">
+                    <a asp-action="generare_contract" class="btn btn-light" asp-route-nrcarnet_gd="@ViewData["partidac"]" style="color:#317eac; font-weight:bold; background: none;border: 1px solid #dddddd" >Generare contract</a>&nbsp;
+                    <input type="submit" class="btn btn-light" value="Creare" style="color:#317eac; font-weight:bold; background: none;border: 1px solid #dddddd" />&nbsp;
+                    <a asp-action="Index" asp-route-searchterm="@ViewData["partidac"]" style="color:#317eac; text-decoration:none;" >Inapoi la lista</a>
+
+                </div>
+            </div>
+ </div>
+
+ </div>
+
+</form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

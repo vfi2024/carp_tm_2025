@@ -1,0 +1,501 @@
+﻿@model carp_tm_2025.Models.Pensionar
+
+
+@{
+    ViewData["Title"] = "Afisare informatii membru";
+}
+
+
+
+
+<form method="get">
+
+    <br />
+
+    <div class="row" style="border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; ">
+
+        <br />
+
+        <div class="col-md-4">
+            <div class="row mb3" style="padding-top:20px; padding-bottom:20px">
+                <input class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%; background:none; border:none; " type="submit" value="cautare nr carnet" />
+                <div class="col-md-10" style="width:65%; ">
+                    <input class="form-control" type="text" name="searchterm" style="text-align:center; outline:none; color: #333333" />
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="col-md-4">
+            <div class="row mb3" style="padding-top:20px; padding-bottom:20px">
+                <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%; background:none; border:none; color:white">creare</label>
+                <div class="col-md-10" style="width:65%;  color: #317eac; text-align:center">
+                    <span class="form-control" style="background-color: #d9edf7">
+                        <a asp-action="Create" style="color:#317eac; text-decoration:none; text-align:center"><b>Creare partida noua</b></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="col-md-4">
+            <div class="row mb3" style="padding-top:20px; padding-bottom:20px">
+                <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%; color:white">nr carnet</label>
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <span class="form-control" style="border:none">
+                        <a asp-action="cautare_partida" style="color:#317eac; text-decoration:none; text-align:center"><i>Cautare dupa nume</i></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+    </div>
+
+    <br />
+</form>
+
+
+@if (Model != null)
+{
+  <div class="row">
+               
+                <div class="col-md-4">
+                    <font style="color:#317eac"><b>INFORMATII GENERALE</b></font>
+                    <hr />
+                    <div class="form-horizontal">
+
+
+                        <div class="row mb3">
+                            <label class="control-label col-md-2" style="text-align:left; color:#317eac;width:35%">nr carnet</label>
+                            <div class="col-md-10" style="width:65%; font-weight:bold; text-align:center">
+                        <input type="text" id="nrcarnetPensIdx" name="nrcarnetPensIdx" readonly value=@ViewBag.nrcarnet ; class="form-control" style="background-color:transparent;font-weight:bold" />
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row mb3">
+                            <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35% ">nume si prenume</label>
+                            <div class="col-md-10"  style="width:65%">
+                                <span class="form-control">
+                                    @Html.DisplayFor(model => model.nume)
+                                </span>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row mb3">
+                            <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">CNP</label>
+                            <div class="col-md-10" style="width:65%">
+                                <span class="form-control">
+                                    @Html.DisplayFor(model =>model.cnp)
+                                </span>
+                            </div>
+                        </div>
+
+                         <br>
+
+                       @if ((Model != null) && (Model.id_stare != 1) && (Model.id_stare != 51) && (Model.id_stare != 3) && (Model.id_stare != 4) && (Model.id_stare != 30) && (Model.id_stare != 52))
+                        {
+                         <div class="row mb3">
+                             <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">Stare</label>
+                             <div class="col-md-10" style="width:65%">
+                                <input type="text" id="stare" name="staren" readonly value=@ViewData["Stare"] ; class="form-control" style="background-color:transparent" />        
+                             </div>
+                         </div>
+                        }
+
+                       @if ((Model != null) && (Model.id_stare == 1) || (Model.id_stare == 51) || (Model.id_stare == 3) || (Model.id_stare == 4) || (Model.id_stare == 30) || (Model.id_stare == 52))
+                       {
+                         <div class="row mb3">
+                            <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">Stare</label>
+                            <div class="col-md-10" style="width:65%">
+                               <input type="text" id="stare" name="staren" readonly value=@ViewData["Stare"] ; class="form-control" style="background-color:transparent;color:RED"  />
+                            </div>
+                         </div>
+                       }
+
+                       <br>
+
+                       <div class="row mb3">
+                          <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">data inscriere</label>
+                           <div class="col-md-10" style="width:65%">
+                              <span class="form-control">
+                                 @Html.Raw(Model.datainscriere.ToString("dd.MM.yyyy"))
+                              </span>
+                           </div>
+                       </div>
+
+                      <br>
+
+                      <div class="row mb3">
+                           <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">nr. cupon</label>
+                           <div class="col-md-10" style="width:65%">
+                              <span class="form-control">
+                                 @Html.DisplayFor(model => model.nrcupon)
+                              </span>
+                          </div>
+                      </div>
+
+                       <br>
+
+                      <div class="row mb3">
+                           <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">valoare venit</label>
+                           <div class="col-md-10" style="width:65%">
+                              <span class="form-control">
+                                 @Html.DisplayFor(model => model.pensie)
+                              </span>
+                          </div>
+                      </div>
+
+                  </div>
+
+               <br />
+               <br />
+
+               </div>
+
+               <div class="col-md-4">
+                 <font style="color:#317eac"><b>DATE DE CONTACT</b></font>
+                  <hr />
+                  <div class="form-horizontal">
+
+
+                     <div class="row mb3">
+                        <label class="control-label col-md-2" style="text-align:left; color:#317eac; font-weight:normal;width:35%">judet</label>
+                        <div class="col-md-10" style="width:65%; ">
+                            <span class="form-control" >
+                              @Html.DisplayFor(model => model.judet)
+                            </span>
+                        </div>
+                     </div>            
+
+                     <br>
+ 
+                     <div class="row mb3">
+                       <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">localitate</label>
+                       <div class="col-md-10" style="width:65%">
+                           <span class="form-control">
+                             @Html.DisplayFor(model => model.localitate)
+                           </span>
+                       </div>
+                     </div>
+
+                     <br>            
+          
+                     <div class="row mb3">
+                       <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">strada</label>
+                        <div class="col-md-10" style="width:65%">
+                          <span class="form-control">
+                            @Html.DisplayFor(model => model.strada)
+                          </span>
+                        </div>
+                     </div>
+
+                     <br>
+
+                     <div class="row mb3">
+                       <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">nr.</label>
+                       <div class="col-md-10" style="width:65%">
+                         <span class="form-control">
+                          @Html.DisplayFor(model => model.nr)
+                         </span>
+                       </div>
+                     </div>
+
+                     <br>
+
+                     <div class="row mb3">
+                       <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">bloc</label>
+                       <div class="col-md-10" style="width:65%">
+                         <span class="form-control">
+                          @Html.DisplayFor(model => model.bloc)
+                         </span>
+                       </div>
+                     </div>
+
+                     <br>
+
+                     <div class="row mb3">
+                       <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">ap.</label>
+                       <div class="col-md-10" style="width:65%">
+                         <span class="form-control">
+                          @Html.DisplayFor(model => model.ap)
+                         </span>
+                       </div>
+                     </div>
+
+                     
+                     <br>
+
+                     <div class="row mb3">
+                       <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">telefon</label>
+                       <div class="col-md-10" style="width:65%">
+                         <span class="form-control">
+                          @Html.DisplayFor(model => model.telefon)
+                         </span>
+                       </div>
+                     </div>
+
+                     <br>
+
+                    <div class="row mb3">
+                       <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">e-mail</label>
+                       <div class="col-md-10" style="width:65%">
+                          <span class="form-control">
+                          @Html.DisplayFor(model => model.email)
+                          </span>
+                       </div>
+                    </div>
+                 </div>
+
+              <br />
+              <br />
+
+              </div>
+
+
+    
+              <div class="col-md-4">
+                 <font style="color:#317eac"><b>DATE CARP</b></font>
+                  <hr />
+                  <div class="form-horizontal">
+
+                    @if ( (Model != null) && (Model.id_stare != 3) && (Model.id_stare != 4))
+                    {
+                     <div class="row mb3">
+                            <label class="control-label col-md-2" style="text-align:left; color:#317eac;width:35%">sold imprumut</label>
+                            <div class="col-md-10" style="width:65%">
+                            <input type="text" id="solimpdesfid" name="solimpdesfn" readonly value=@ViewData["soldimp_desf"] ; class="form-control" style="background-color:transparent; font-weight:bold; " />
+                           </div>
+                     </div>
+
+                     <br />
+
+                     <div class="row mb3">
+                           <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">credit imprumut</label>
+                           <div class="col-md-10" style="width:65%">
+                              <span class="form-control">
+                                 @Html.DisplayFor(model => model.credit_imprumut)
+                              </span>
+                          </div>
+                      </div>
+
+                      <br />
+
+                     <div class="row mb3">
+                           <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">debit imprumut</label>
+                           <div class="col-md-10" style="width:65%">
+                              <span class="form-control">
+                                 @Html.DisplayFor(model => model.debit_imprumut)
+                              </span>
+                          </div>
+                      </div>
+
+                      <br />
+
+                     <div class="row mb3">
+                          <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">restituit imprumut</label>
+                           <div class="col-md-10" style="width:65%">
+                              <span class="form-control">
+                                @Html.DisplayFor(model => model.restimp)
+                              </span>
+                           </div>
+                     </div>
+
+                     }
+
+                    @if ((Model.id_stare == 3) ||  (Model.id_stare == 4))
+                    {
+                    <div class="row mb3">
+                           <label class="control-label col-md-2" style="text-align:left; color: red;font-weight:normal; width:35%">sold debitor</label>
+                           <div class="col-md-10" style="width:65%">
+                             <span class="form-control"style="color: red; font-weight: normal ">
+                               @Html.DisplayFor(model => model.sold_461)
+                             </span>
+                           </div>
+                     </div>
+                    }
+
+                     <br />
+
+                     <div class="row mb3">
+                          <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">ultima plata</label>
+                           <div class="col-md-10" style="width:65%">
+                              <span class="form-control">
+                               @Html.Raw(Model.lunaimp.ToString("dd.MM.yyyy"))
+                              </span>
+                           </div>
+                     </div>
+
+                     <br />
+
+                     <div class="row mb3">
+                          <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">acordat imprumut</label>
+                           <div class="col-md-10" style="width:65%">
+                              <span class="form-control">
+                                @Html.DisplayFor(model => model.acimp)
+                              </span>
+                           </div>
+                     </div>
+
+                     <br />
+
+                    @if (Model.dataimp.HasValue)
+                    {
+                     <div class="row mb3">
+                          <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">data imprumut</label>
+                           <div class="col-md-10" style="width:65%">
+                              <span class="form-control">                              
+                               @Html.Raw(Model.dataimp.Value.ToString("dd.MM.yyyy"))                                                         
+                              </span>
+                           </div>
+                     </div>
+                    }
+
+                <br />
+
+
+                     @if ((Model.id_stare != 3) && (Model.id_stare != 4))
+                    {
+
+                     <div class="row mb3">
+                          <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">sold cotizatie</label>
+                           <div class="col-md-10" style="width:65%">
+                        <span class="form-control" style="font-weight:bold">
+                                @Html.DisplayFor(model => model.soldcotiz)
+                              </span>
+                           </div>
+                     </div>
+
+                      <br />
+
+                     <div class="row mb3">
+                          <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">luna aj deces</label>
+                        <div class="col-md-10" style="width:65%;font-weight:bold">
+                            <span class="form-control" style="font-weight:bold">
+                               @Html.Raw(Model.lunaajdeces.ToString("dd.MM.yyyy"))
+                              </span>
+                           </div>
+                     </div>
+
+                     <br />
+
+                     <div class="row mb3">
+                          <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">sold aj deces</label>
+                        <div class="col-md-10" style="width:65%">
+                            <span class="form-control" >
+                                
+                                @Html.DisplayFor(model => model.soldajdeces)
+                              </span>
+                           </div>
+                     </div>
+                     }
+
+                     @if (Model.id_stare == 4)
+                     {
+                     <br />
+
+                     <div class="row mb3">
+                        <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">sold dobanda</label>
+                        <div class="col-md-10" style="width:65%">                                                          
+                                <input type="text" id="solddobDP" name="solddobDP" readonly value=@ViewData["solddob"] ; class="form-control" style="background-color:transparent;  " />
+                           
+                        </div>
+                     </div>
+
+                     <br />
+
+                      <div class="row mb3">
+                        <label class="control-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">sold DP</label>
+                        <div class="col-md-10" style="width:65%">
+                            <span class="form-control">
+                                @Html.DisplayFor(model => model.sold_DP)
+                            </span>
+                        </div>
+                     </div>
+                     }
+
+                  </div>
+
+              </div>
+ </div>
+
+
+ <div class="row">
+        <div class="col-md-4">
+        <div class="row mb3" style="padding-top:20px; padding-bottom:20px">
+            <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%; background:none; border:none; color:white">creare</label>
+            <div class="col-md-10" style="width:65%;  color: #317eac; text-align:center">
+                    <span class="form-control" style="border:0">
+                    <a style="color:#317eac; text-decoration:none" asp-action="Edit" asp-route-id=@Model.nrcarnet><b>Editare</b></a>
+                </span>
+            </div>
+        </div>
+        </div>
+    
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="row mb3" style="padding-top:20px; padding-bottom:20px">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%; background:none; border:none; color:white">creare</label>
+                <div class="col-md-10" style="width:65%;  color: #317eac; text-align:center">
+                    <span class="form-control" style="background-color: #d9edf7">
+                        <a style="color:#317eac; text-decoration:none" asp-controller="Chitantas" asp-action="Index" asp-route-nrcarnet=@Model.nrcarnet><b>Chitante</b></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="col-md-4">
+            <div class="row mb3" style="padding-top:20px; padding-bottom:20px">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%; background:none; border:none; color:white">creare</label>
+                <div class="col-md-10" style="width:65%;  color: #317eac; text-align:center">
+                    <span class="form-control" style="background-color: #d9edf7">
+                        <a style="color:#317eac; text-decoration:none" asp-controller="imprumuturis" asp-action="Index" asp-route-searchterm=@Model.nrcarnet><b>Imprumuturi</b></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+      
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row mb3" style="padding-top:20px; padding-bottom:20px; ">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%; background:none; border:none; color:white">creare</label>
+                <div class="col-md-10" style="width:65%;  color: #317eac; text-align:center;   ">
+                    <span class="form-control" style="border:0">
+                        <a style="color:#317eac; text-decoration:none" href="https://192.168.1.110/carp_tm_2024_2034/Pensionars" ><b>Arhiva 2024</b></a>
+                    <br />
+                        <a style="color:#317eac; text-decoration:none;" href="https://192.168.1.110/carp_tm/carp_tm/Pensionars2023"><b>Arhiva 2016-2023</b></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+   
+
+
+ }
+
+
+
+
+
+

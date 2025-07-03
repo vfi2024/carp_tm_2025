@@ -1,0 +1,79 @@
+﻿@model IEnumerable<carp_tm_2025.Models.imprumuturi>
+
+@{
+    ViewData["Title"] = "Afisare imprumuturi";
+}
+
+<h3 style="color:#317eac; font-family: sans-serif; font-size:30px">Imprumuturi pentru partida @ViewData["partida"]</h3>
+
+<br />
+
+
+<table class="table table-bordered" style="text-align:center">
+    <thead>
+        <tr style="font-weight:normal; color:#317eac; background-color: #f5f5f5 ">
+           
+            <th style="font-weight:normal; vertical-align:middle">  nr contract </th>
+
+            <th style="font-weight:normal; vertical-align:middle">  valoare imprumut </th>
+            
+            <th style="font-weight:normal; vertical-align:middle">  data imprumut </th>                      
+            
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nr_contract)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valoare_imprumut)
+            </td>
+            <td>
+                 @Html.Raw(item.data_imprumut.ToString("dd.MM.yyyy"))
+            </td>
+                        
+            <td>
+                 <a style="color:#317eac; text-decoration:none" asp-action="afisare_desfasurator_rate" asp-route-id_impr_ad="@item.idimprum" asp-route-nr_carnet_ad="@item.nrcarnet">desfasurator rate</a>
+            </td>
+
+            <td>
+                    <a style="color:#317eac; text-decoration:none" asp-controller="girantis" asp-action="giranti_imprumut" asp-route-nrcarnetg="@item.nrcarnet" asp-route-nrcontractg="@item.nr_contract">giranti</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+
+<br />
+<p>
+    <a style="color:#317eac; text-decoration:none" asp-action="Create" asp-route-idp="@ViewData["partida"]">Introducere imprumut nou</a>
+</p>
+
+<p>
+    <a style="color:#317eac; text-decoration:none" asp-action="desfasurator_nou" > <b> Rambursare anticipata </b> </a>
+</p>
+
+
+<p>
+    <a style="color:#317eac; text-decoration:none" asp-action="Create" asp-controller="girantis" asp-route-nrcg="@ViewData["partida"]"> <b> Creare giranti </b> </a>
+</p>
+
+<p>
+    <a style="color:#317eac; text-decoration:none" asp-action="Index" asp-controller="girantis" asp-route-nrcarnetg="@ViewData["partida"]"> <b> Giranti </b> </a>
+</p>
+
+
+<p>
+    <a style="color:#317eac; text-decoration:none" asp-action="simulare_desfasurator_imprumut_nou" asp-route-nr_carnet_ads="@ViewData["partida"]"> <b> Simulator desfasurator rate </b> </a>
+</p>
+
+<p>
+    <a style="color:#317eac; text-decoration:none" asp-controller="Pensionars" asp-action="Index" asp-route-searchterm="@ViewData["partida"]">Inapoi la lista</a>
+</p>
+

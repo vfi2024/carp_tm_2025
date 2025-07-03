@@ -1,0 +1,136 @@
+﻿@model IEnumerable<carp_tm_2025.Models.desfasurator_rate>
+
+@{
+    ViewData["Title"] = "Rambursare anticipata";
+}
+
+
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+
+
+<h2 style="color:#317eac">Reducere perioada plata sau rata totala pentru partida @ViewBag.nr </h2>
+
+
+<br />
+<br />
+
+<form asp-action="desfasurator_nou">
+  
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+     
+         <div class="col-md-6">
+
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">mod reducere</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <select class="form-control" name="mod_reducere" name="" style="display: block; width: 100%; height: 34px; padding: 6px 12px;  line-height: 1.428571429; color: #555555; vertical-align: middle; background-color: #ffffff; border: 1px solid #cccccc; border-radius: 4px;">
+                        <option value="1">Reducere perioada</option>
+                        <option value="2">Reducere suma de plata</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <br />           
+
+        </div>
+
+        <br />
+
+        <div class="col-md-6">
+
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">nr carnet</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" type="text" id="nr_carnet_change_d" name="nr_carnet_change_d" />
+
+                </div>
+
+            </div>
+
+            <br />
+
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">nr nota contabila</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" type="text" id="nr_nota_contabila" name="nr_nota_contabila" />
+                </div>
+
+            </div>
+
+            <br />
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">data nota contabila</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" type="text" id="data_nota_contabila" name="data_nota_contabila" value="@ViewData["dataRA"]" readonly="readonly" />
+                </div>
+
+            </div>
+
+            <br />
+
+
+            <div class="row mb3">
+
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal; width:35%">credit imprumut</label>
+
+                <div class="col-md-10" style="width:65%; text-align:center">
+                    <input class="form-control" type="text" id="credit" name="credit" />                  
+                </div>
+
+            </div>
+
+            <br />
+
+          
+
+            <br />
+
+
+
+          
+
+        </div>
+
+
+  </div>
+
+ <br />
+  
+<div class="row">
+
+<div class="col-md-6">
+
+            <div class="row mb3">
+                <label class="col-form-label col-md-2" style="text-align:left; color:#317eac;font-weight:normal;width:35%"></label>
+                <div class="col-md-10" style="width:65%; text-align:left">
+                    <input type="submit"  value="Introducere nota contabila" style="color:#317eac; font-weight:bold; background: none;border: 1px solid #dddddd" />                
+
+                </div>
+            </div>
+ </div>
+
+ </div>
+
+</form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

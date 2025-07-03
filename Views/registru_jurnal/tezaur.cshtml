@@ -1,0 +1,182 @@
+﻿@model IEnumerable<carp_tm_2025.Models.tezaur>
+
+@{
+    ViewData["Title"] = "Tezaur";
+}
+
+<h2 style="color:#317eac;">Tezaur</h2>
+
+<br />
+
+
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+
+<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+
+ <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.min.css">
+
+
+<style>
+
+    .ui-datepicker {
+        background: #337ab7;
+        color: white;
+    }
+
+    .ui-datepicker-calendar a.ui-state-default {
+        background: white;
+    }
+
+    .ui-datepicker-header {
+        background: white;
+        color: #337ab7;
+    }
+
+</style>
+
+<script type="text/javascript">
+
+    $(function () {
+        $(".datepicker").datepicker();
+    });
+
+</script>
+
+<div id="datepicker"></div>
+
+<form asp-action="tezaur" method="get">
+
+<table class="table" style=" border: solid 1px #ddd ;  text-align:center">
+
+  <tr style="text-align:center">
+
+            <td style="padding-top:15px; padding-bottom:15px">
+                <label style="color:#317eac">in ziua:</label>
+                <input type="text" class="datepicker" name="ziua_T" style="border: solid 1px #ddd; text-align:center;  width: 160px; outline:0" />
+            </td>
+
+
+            <td style="padding-top:15px">
+                <label style="color:#317eac"></label>
+                <input type="submit" style=" font-weight:bold; background:none; border:none; color:#317eac " value="Afisare tezaur" />
+            </td>
+
+  </tr>
+
+</table>
+
+<br />      
+
+</form>
+
+
+<br />
+
+<h2 style="color:#317eac ">  @ViewData["Titlutt"]</h2>
+
+<div>
+
+    <table class="table" style="color:#317eac; border:1">
+        <tr class="active">
+            <th>
+                sold initial
+            </th>
+
+            <th>
+                total incasare
+            </th>
+
+            <th>
+               total plata
+            </th>
+
+            <th>
+                sold final
+            </th>
+           
+        </tr>
+
+        <tr class="table" style="color: #666666; background-color: #d9edf7">
+            <td>
+                @ViewData["sold_initialT"]
+            </td>
+            <td>
+                @ViewData["RCTotalIncasareT"]
+            </td>
+            <td>
+                @ViewData["RCTotalPlataT"]
+            </td>
+            <td>
+                @ViewData["sold_finalT"] 
+            </td>         
+        </tr>
+
+    </table>
+
+    <br />
+
+</div>
+
+<br />
+
+
+<h2 style="color:#317eac "> @ViewData["Titlut"]</h2>
+
+<div>
+
+
+    <table class="table table-bordered" style="text-align:center">
+       <thead>
+        <tr style="font-weight:normal; color:#317eac; background-color: #f5f5f5 ">
+
+                <th style="font-weight:normal; vertical-align:middle; text-align:center">nr cont casa </th>
+
+                <th style="font-weight:normal; vertical-align:middle; text-align:center">explicatie nr cont casa</th>
+
+                <th style="font-weight:normal; vertical-align:middle; text-align:right">sold initial </th>
+
+                <th style="font-weight:normal; vertical-align:middle; text-align:right">incasare</th>
+
+                <th style="font-weight:normal; vertical-align:middle; text-align:right">plata</th>
+
+                <th style="font-weight:normal; vertical-align:middle; text-align:right" >sold final</th>          
+        </tr>
+       </thead>
+     <tbody>
+      @foreach (var item in Model)
+      {
+       <tr style="text-align:center; color: #333333">
+
+        <td style="vertical-align:middle; text-align:center "> @Html.DisplayFor(modelItem => item.nr_cont_casa) </td>
+
+        <td style="vertical-align:middle; text-align:center "> @Html.DisplayFor(modelItem => item.explicatie_cont_casa) </td>
+
+        <td style="vertical-align:middle; text-align:right "> @Html.DisplayFor(modelItem => item.SI_T) </td> 
+        
+        <td style="vertical-align:middle; text-align:right "> @Html.DisplayFor(modelItem => item.incas_T) </td> 
+
+        <td style="vertical-align:middle; text-align:right "> @Html.DisplayFor(modelItem => item.plata_T) </td>
+
+       <td style="vertical-align:middle; text-align:right "> @Html.DisplayFor(modelItem => item.SF_T) </td>
+
+      </tr>
+      }
+      </tbody>
+
+    </table>
+
+   
+
+</div>
+
+
+
+
+<p>
+    <br />
+    <h2>
+        <a style="color:#317eac; text-decoration:none" href='@Url.Content("~/PDF/tezaur.pdf")'>Listare</a>
+    </h2>
+    <br />
+</p>

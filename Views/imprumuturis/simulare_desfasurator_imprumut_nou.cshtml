@@ -1,0 +1,173 @@
+﻿
+@{
+    ViewBag.Title = "simulator desfasurator rate";
+}
+
+
+
+@model IEnumerable<carp_tm_2025.Models.desfasurator_rate_simulator>
+
+
+
+<h2 style="color:#317eac ">Simulator desfasurator rate   </h2>
+<br />
+
+
+@using (Html.BeginForm("simulare_desfasurator_imprumut_nou", "Imprumuturis", FormMethod.Get))
+{
+
+
+    <table class="table" style=" border: solid 1px #ddd ;  text-align:center">
+
+        <tr>
+
+
+            <td style="padding-top:15px; padding-bottom:15px">
+                <label style="color:#317eac"> valoare imprumut</label>
+                @Html.TextBox("valoare_imprumut", null, new { style = "border: solid 1px #ddd; text-align:center" })
+            </td>
+
+            
+
+            <td style="padding-top:15px; padding-bottom:15px">
+                <input type="submit" style=" font-weight:bold; background:none; border:none; color:#317eac " value="afisare simulator desfasurator" />
+            </td>
+        </tr>
+
+
+    </table>
+    <input type="hidden" id="nr_carnet_ads" value="ViewData["nrcarnet_ads"]" />
+} 
+
+<br />
+
+
+<h2 style="color:#317eac "> Simulator desfasurator rate pentru   nr rate @ViewBag.nrrate_ads, valoare imprumut @ViewBag.sold_impr_ads</h2>
+
+<br />
+<div>
+
+
+    <table class="table" style="color:#317eac; border:1">
+        <tr class="active">
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            <th>
+                total rata
+            </th>
+            <th>
+                total dobanda
+            </th>
+            <th>
+                total
+            </th>
+
+
+        </tr>
+
+        <tr class="table" style="color: #666666; background-color: #d9edf7">
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+                @ViewBag.total_rataS
+            </td>
+            <td>
+                @ViewBag.total_dobandaS
+            </td>
+            <td>
+                @ViewBag.total_totalS
+            </td>
+        </tr>
+
+
+    </table>
+
+
+</div>
+
+
+
+<div>
+    <br />
+
+    <br />
+
+    <table class="table table-bordered">
+        <tr style="font-weight:normal; color:#317eac; background-color: #f5f5f5 ">
+
+            <th style="color: #317eac; text-align:center">
+                nr rata
+            </th>
+            <th style="color: #317eac; text-align:center">
+                data rata
+            </th>
+            <th style="color: #317eac; text-align:center">
+                sold impr ramas
+            </th>
+            <th style="color: #317eac; text-align:center">
+                rata
+            </th>
+            <th style="color: #317eac; text-align:center">
+                dobanda
+            </th>
+            <th style="color: #317eac; text-align:center">
+                total
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr style="text-align:center; color: #333333">
+
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.nr_rata)
+                </td>
+                <td style="text-align:center">
+                    @Html.Raw(item.data_rata.ToString("dd.MM.yyyy"))
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.sold_imp)
+                </td>
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.rata_de_plata)
+                </td>
+
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.dobanda)
+                </td>
+
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.total)
+                </td>
+
+
+            </tr>
+
+        }
+
+    </table>
+
+
+</div>
+
+
+<br />
+<hr />
+<p>
+
+    <br />
+    <a style="color:#317eac; text-decoration:none;" asp-action="Index" asp-route-searchterm="@ViewData["nrcarnet_ads"]" > <i>Revenire la imprumuturi acordate </i></a>
+
+</p>
+<br />

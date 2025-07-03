@@ -1,0 +1,295 @@
+﻿@*@using X.PagedList.Mvc.Core;*@
+@using X.PagedList;
+@using X.Web.PagedList;
+
+
+
+
+@model IEnumerable<carp_tm_2025.Models.Chitanta>
+
+
+@{
+    ViewData["Title"] = "Afisare incasari zilnice";
+}
+<script src="~/lib/jquery/jquery.min.js"></script>
+
+<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+
+ <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.min.css">
+
+<link rel="stylesheet" href="~/css/PagedList.css">
+
+<style>
+
+    .ui-datepicker {
+        background: #337ab7;
+        color: white;
+    }
+
+    .ui-datepicker-calendar a.ui-state-default {
+        background: white;
+    }
+
+    .ui-datepicker-header {
+        background: white;
+        color: #337ab7;
+    }
+
+</style>
+
+
+<script type="text/javascript">
+
+    $(function () {
+        $(".datepicker").datepicker();
+    });
+
+</script>
+
+
+<div id="datepicker"></div>
+
+
+<h2 style="color:#317eac ">incasari zilnice </h2>
+
+<form method="post">
+
+    <br />
+
+    <table class="table" style=" border: solid 1px #ddd">
+
+        <tr>
+
+            <td style="padding-top:15px; padding-bottom:15px">
+                <label style="color:#317eac">in ziua:</label>
+                <input type="text" class="datepicker" name="zi" style="border: solid 1px #ddd; text-align:center;  width: 160px; outline:0"   />
+            </td>
+
+            <td style="padding-top:15px">
+                <label style="color:#317eac">de la nr:</label>
+                @Html.TextBox("nrch1", null, new
+                    {
+                        style = "border: solid 1px #ddd;  width: 160px; text-align:center; color: #343a40; outline:0" })
+            </td>
+
+            <td style="padding-top:15px">
+                <label style="color:#317eac">la nr:</label>
+                @Html.TextBox("nrch2", null, new
+                    {
+                        style = "border: solid 1px #ddd; text-align:center; width: 160px; outline:0"  })
+            </td>
+
+           
+           
+            <td style="padding-top:15px">
+                <label style="color:#317eac">zona:</label>
+                <select id="delegat" name="delegat" style="width: 160px; border: 1px solid #cccccc; height: 25px ">
+                    <option value="1">sediu</option>
+                    <option value="2">SAELELE</option>
+                    <option value="3">LUNCA</option>
+                    <option value="4">GIUVARASTI</option>
+                    <option value="5">TRAIAN</option>
+                    <option value="6">ISLAZ</option>
+                    <option value="7">LITA</option>
+                </select>
+            </td>
+           
+
+            <td style="padding-top:15px">
+                <label style="color:#317eac"></label>
+                <input type="submit" style=" font-weight:bold; background:none; border:none; color:#317eac " value="afisare incasari" />
+            </td>
+
+        </tr>
+
+
+    </table>
+    
+
+    
+    <br />
+</form>
+
+<h2 style="color:#317eac "> Total incasari din data de @ViewData["zi"] de la nr chitanta @ViewData["nrch1"] la nr @ViewData["nrch2"] </h2>
+
+<div>
+
+    <table class="table" style="color:#317eac; border:1">
+        <tr class="active">
+            <th>
+                cotizatie
+            </th>
+            <th>
+                rata
+            </th>
+
+            <th>
+                dobanda penalizatoare
+            </th>
+
+            <th>
+                dobanda
+            </th>
+            <th>
+                contributie
+            </th>
+            <th>
+                taxa inscriere
+            </th>
+            <th>
+                total
+            </th>
+        </tr>
+
+        <tr class="table" style="color: #666666; background-color: #d9edf7">
+            <td>
+                @ViewBag.cotizatie
+            </td>
+            <td>
+                @ViewBag.rata
+            </td>
+
+            <td>
+                @ViewBag.dobanda_penalizatoare
+            </td>
+
+            <td>
+                @ViewBag.dobanda
+            </td>
+            <td>
+                @ViewBag.ajdeces
+            </td>
+            <td>
+                @ViewBag.taxa
+            </td>
+            <td>
+                @ViewBag.total
+            </td>
+        </tr>
+
+
+    </table>
+    <br />
+
+</div>
+
+
+<br />
+
+<h2 style="color:#317eac "> Chitante din data de @ViewData["zi"] de la nr chitanta @ViewData["nrch1"] la nr @ViewData["nrch2"] </h2>
+
+<div>
+
+
+
+<table class="table table-bordered" style="text-align:center">
+    <thead>
+        <tr style="font-weight:normal; color:#317eac; background-color: #f5f5f5 ">
+
+                <th style="font-weight:normal; vertical-align:middle">nr. carnet </th>
+
+            <th style="font-weight:normal; vertical-align:middle">  nr </th>
+           
+
+            <th style="font-weight:normal; vertical-align:middle"> cotizatie </th>
+
+            <th style="font-weight:normal; vertical-align:middle"> contributie </th>
+
+            <th style="font-weight:normal; vertical-align:middle"> perioada </th>
+
+            <th style="font-weight:normal; vertical-align:middle"> rata de plata </th>
+
+            <th style="font-weight:normal; vertical-align:middle"> rata </th>
+
+            <th style="font-weight:normal; vertical-align:middle"> credit </th>
+
+            <th style="font-weight:normal; vertical-align:middle"> debit </th>
+
+            <th style="font-weight:normal; vertical-align:middle"> dobanda penalizatoare </th>
+
+            <th style="font-weight:normal; vertical-align:middle"> dobanda  </th>
+
+            <th style="font-weight:normal; vertical-align:middle"> taxa inscriere </th>
+
+            <th style="font-weight:normal; vertical-align:middle"> total </th>
+
+            <th style="font-weight:normal; vertical-align:middle"> tip operatie </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+
+            <tr style="text-align:center; color: #333333">
+
+                    <td style="vertical-align:middle"> @Html.DisplayFor(modelItem => item.nrcarnet) </td>
+
+                <td style="vertical-align:middle"> @Html.DisplayFor(modelItem => item.nrch) </td>
+
+           
+                <td style="vertical-align:middle"> @Html.DisplayFor(modelItem => item.cotizatie) </td>
+
+                <td style="vertical-align:middle"> @Html.DisplayFor(modelItem => item.ajdeces) </td>
+
+                <td style="vertical-align:middle"> @Html.Raw(item.lunaajdeces.ToString("dd.MM.yyyy")) </td>
+
+                <td style="vertical-align:middle;text-align:right"> @Html.DisplayFor(modelItem => item.rata_de_plata) </td>
+
+                <td style="vertical-align:middle;text-align:right"> @Html.DisplayFor(modelItem => item.rata) </td>
+
+                <td style="vertical-align:middle; text-align:right"> @Html.DisplayFor(modelItem => item.credit_imprumut)  </td>
+
+                <td style="vertical-align:middle; text-align:right"> @Html.DisplayFor(modelItem => item.debit_imprumut) </td>
+
+                <td style="vertical-align:middle; text-align:right"> @Html.DisplayFor(modelItem => item.dobanda_penalizatoare) </td>
+
+                <td style="vertical-align:middle; text-align:right"> @Html.DisplayFor(modelItem => item.dobanda) </td>
+
+                <td style="vertical-align:middle; text-align:right"> @Html.DisplayFor(modelItem => item.taxainscr) </td>
+
+                <td style="vertical-align:middle; text-align:right"> @Html.DisplayFor(modelItem => item.total) </td>
+
+                <td style="vertical-align:middle"> @Html.DisplayFor(modelItem => item.tip_operatie) </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+    @Html.PagedListPager((IPagedList)ViewBag.incasari_zilnice, page => Url.Action("incasari_zilnice", "Chitantas", new
+        {
+            zi = @ViewData["zi"],
+            nrch1 = @ViewData["nrch1"],
+            nrch2=@ViewData["nrch2"],
+            delegat = @ViewData["delegat"],
+            page = page
+        }))
+
+</div>
+
+
+
+<p> 
+    <h2 style="color:#317eac; text-decoration:none ">
+        @Html.ActionLink("Listare la imprimanta", "listare_incasari_zilnice_delegati", new
+            {
+                zi_izd = @ViewData["zi"],
+                nrch1_izd = @ViewData["nrch1"],
+                nrch2_izd = @ViewData["nrch2"],
+                delegat = @ViewData["delegat"],
+               
+
+            }, new { style = "text-decoration:none; color:#317eac" })
+    </h2>
+    <br />   
+</p>
+
+<br />
+
+
+
+
